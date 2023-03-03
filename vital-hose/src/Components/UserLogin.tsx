@@ -11,7 +11,6 @@ const firebaseConfig = {
     appId: "1:946617291073:web:72236126f867f8838311c0",
     measurementId: "G-8KNPTFHYM0",
   };
-  
   firebase.initializeApp(firebaseConfig);
 function UserLogin() {
 const [loading,setLoading]=useState(false);
@@ -20,8 +19,21 @@ const [phoneNumber,setPhoneNumber]=useState("+91")
 const [code,setCode]=useState("");
 const [name,setName]=useState("");
 const [email,setEmail]=useState("");
+const [successLogin,setSuccesLogin]=useState(false)
 const toast=useToast();
+const HandleSubmitUser=()=>{
+const payload={email,name,phoneNumber}
+
+// here post request will be make 
+toast({
+  title: "Login Succesfully!",
+  status: "success",
+  duration: 3000,
+  isClosable: true,
+});
+}
     const HandleSendCode = () => {
+      if(name&&email){
         setLoading(true);
         const phoneProvider = new firebase.auth.PhoneAuthProvider();
         phoneProvider
@@ -49,7 +61,17 @@ const toast=useToast();
               duration: 3000,
               isClosable: true,
             });
-          });
+          });}
+          else {
+            setLoading(false)
+            toast({
+              title: "Error sending verification code",
+              description: "Please Enter All Details!",
+              status: "error",
+              duration: 3000,
+              isClosable: true,
+            });
+          }
       };
       const HandleVerifyCode = () => {
         const credential = firebase.auth.PhoneAuthProvider.credential(
@@ -60,6 +82,8 @@ const toast=useToast();
           .auth()
           .signInWithCredential(credential)
           .then(() => {
+
+            HandleSubmitUser()
           })
           .catch((error) => {
             toast({
@@ -71,6 +95,9 @@ const toast=useToast();
             });
           });
       };
+      if (successLogin){
+       
+      }
   return (
            <div>
           <Stack m="auto" spacing="4" border={"1px solid #38A169"} borderRadius="2" p="7" shadow={"md"}>
@@ -108,7 +135,7 @@ const toast=useToast();
                   />
                 </HStack>
                 {/* </FormControl> */}
-                <Button onClick={HandleVerifyCode}>Placed Order</Button>
+                <Button onClick={HandleVerifyCode}>Go</Button>
               </>
             )}
             <Box py="2" style={{margin:"auto",color:"green"}} id="recaptcha-container"></Box>
