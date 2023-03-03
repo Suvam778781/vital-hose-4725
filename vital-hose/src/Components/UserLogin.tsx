@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import { Input,Button,HStack,Stack,FormControl,FormLabel,Spinner,useToast, Box} from "@chakra-ui/react"
+import { Navigate } from 'react-router';
 const firebaseConfig = {
     apiKey: "AIzaSyBG-3TqMxHdc_Mjlhqa2w3JnBmrDgkONB0",
     authDomain: "otp-prdb-authentication.firebaseapp.com",
@@ -31,6 +32,7 @@ toast({
   duration: 3000,
   isClosable: true,
 });
+setSuccesLogin(true);
 }
     const HandleSendCode = () => {
       if(name&&email){
@@ -96,29 +98,56 @@ toast({
           });
       };
       if (successLogin){
-       
+      return < Navigate to="/instruction"/>
       }
   return (
            <div>
-          <Stack m="auto" spacing="4" border={"1px solid #38A169"} borderRadius="2" p="7" shadow={"md"}>
+          <Stack m="auto" spacing="4" border={"2px solid #df8636"} borderRadius="2" p="7" shadow={"md"}>
             <FormControl>
             <FormLabel>Name</FormLabel>
-            <Input  placeholder='Name..'borderRadius="0" type={"text"} value={name}  onChange={(e)=>setName(e.target.value)}/>
+            <Input size="lg" 
+            fontFamily="cursive" 
+            border="2px solid green"   
+            placeholder='Name..'
+            borderRadius="5px"
+            type={"text"} 
+            value={name}  
+            onChange={(e)=>setName(e.target.value)}
+            />
             </FormControl>
             <FormControl>
             <FormLabel>Email</FormLabel>
-            <Input placeholder='Email..' type={"email"} borderRadius="0" value={email} onChange={(e)=>setEmail(e.target.value)}/>
+            <Input
+            size="lg" 
+            fontFamily="cursive" 
+            border="2px solid green" 
+             placeholder='Email..' 
+             type={"email"} 
+             borderRadius="5px"
+             value={email} 
+             onChange={(e)=>setEmail(e.target.value)}
+             />
             </FormControl>
             <FormControl id="phone">
               <FormLabel>Phone number</FormLabel>
               <Input
-                borderRadius={"0"}
-                type="phone"
-                value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
+              size="lg" 
+              fontFamily="cursive" 
+              border="2px solid green" 
+              borderRadius="5px"
+              type="phone"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
               />
             </FormControl>
-            <Button borderRadius={"sm"} onClick={HandleSendCode}>
+            <Button 
+            borderRadius="8px" 
+            w="50%"
+            p="25px" 
+            fontFamily="cursive"
+            backgroundColor="#df8636"
+            onClick={HandleSendCode}
+            >
               {loading ? <Spinner /> : "Send code"}
             </Button>
             {verificationId && (
