@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
+// import Timmer from "./Components/timmer/Timmer";
 import VideoQuizGame from './Components/VideoQuizGame'
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
   return (
     <div className="App" >
       <VideoQuizGame/>
+
     </div>
   )
 }
