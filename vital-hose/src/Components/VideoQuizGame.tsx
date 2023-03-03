@@ -41,18 +41,10 @@ const VideoQuizGame = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
-  const [selectedValue, setSelectedValue] = useState(0);
-
-
+  
 const HandleSubmitScore=()=>{
-
-
   // api integration here
-
-}  
-  const handleAnswerOptionClick = (index: Number) => {
-    setSelectedValue(Number(index))
-  };
+}
   const HandleDecrease=()=>{
     setCurrentIndex((pre=>pre-1))
   }
@@ -72,7 +64,6 @@ const HandleSubmitScore=()=>{
       </div>
       <div>
         {showScore ? (
-
           <Box>
           <Text
             backgroundColor={"green.500"}
@@ -84,12 +75,12 @@ const HandleSubmitScore=()=>{
           >
             You scored {score} out of {quizData.length}
           </Text>
-          <Button mt="20px" _focus={{border:"none"}} backgroundColor="green.500" color={"white"} _hover={{border:"1px"}} >Start Again</Button>
+          <Button mt="20px" _focus={{border:"none"}} backgroundColor="green.500" color={"white"} _hover={{border:"1px"}} onClick={()=>{setCurrentIndex(0),setShowScore(false),setScore(0)}}>Start Again</Button>
           </Box>
         ) : (
-          <>
+          <div>
             <div>
-              <div>
+             <div>
                 <Box
                   w="100%"
                   justifyContent={"space-between"}
@@ -134,20 +125,8 @@ const HandleSubmitScore=()=>{
               </div>
               <div>{quizData[currentIndex].text}</div>
             </div>
-            <div>
-              {quizData[currentIndex].choices.map((choice, index) => (
-                <HStack 
-                  key={index}
-                  spacing={2}
-                  color="green.500"
-                  onClick={() => handleAnswerOptionClick(index)}
-                >
-                  <Checkbox value="1" borderRadius="50%" isChecked={selectedValue==index} />
-                  <Text>{choice}</Text>
-                </HStack>
-              ))}
-            </div>
-          </>
+          <SingleQuiz score ={score} setScore={setScore}  currentIndex={currentIndex}/>
+          </div>
         )}
       </div>
     </Box>
@@ -155,3 +134,38 @@ const HandleSubmitScore=()=>{
 };
 
 export default VideoQuizGame;
+const SingleQuiz = (props: any) => {
+  const [selectedValue, setSelectedValue] = useState(-1);
+  const handleAnswerOptionClick = (index: number) => {
+    setSelectedValue(index);
+    const currentQuestion = quizData[props.currentIndex];
+    if (currentQuestion.answer === currentQuestion.choices[index]) {
+      props.setScore((score: number) => score + 1);
+    }
+
+
+
+  };
+
+  return (
+    <>
+      <div>
+        {quizData[props.currentIndex].choices.map((choice, index) => (
+          <HStack
+            key={index}
+            spacing={2}
+            color="green.500"
+            onClick={() => handleAnswerOptionClick(index)}
+          >
+            <Checkbox
+              value="1"
+              borderRadius="50%"
+              isChecked={selectedValue === index}
+            />
+            <Text>{choice}</Text>
+          </HStack>
+        ))}
+      </div>
+    </>
+  );
+};
