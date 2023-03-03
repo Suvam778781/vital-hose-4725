@@ -12,64 +12,25 @@ import {
 import img from "../../assets/read.jpg"
 import play from "../../assets/play.gif"
 import {Link} from "react-router-dom";
+import UserLogin from '../UserLogin';
 // import Aos from "aos";
 // import "aos/dist/aos.css";
 
 const Home = () => {
 
-  const [name,setName]= useState<string>("");
-  // useEffect(()=>{
-  //   Aos.init({ duration: 3000})
-  // },[])
-
-  const handleClick=()=>{
-    // console.log(name);
-    localStorage.setItem("name",JSON.stringify(name));
-  }
-
   return (
-    <Box>
+    <Box className="body" m="0" p="0">
      <Text fontSize="90px" fontFamily="cursive" color="#b05b1e" fontWeight="60px">Quiz Mania</Text>
     <Flex flexDirection={["column","column","row","row"]} gap={4} alignItems="center">
       <Box w='80%'>
         <Image src={img} alt="background" height={["60%","70%","80%","100%"]} w="100%" m="auto"/>
       </Box>
       <Box w='100%' backgroundColor="#afafaf">
-        <Box m="auto"w="50%"  >
-        <Image src="https://media.tenor.com/pryeR-2Jbe0AAAAC/quiz-time-quiz.gif" alt="" />
+        <Box m="auto"w={["100%","100%","90%","50%"]}  >
+        <Image src="https://cdn2.vectorstock.com/i/1000x1000/16/06quiz-sign-icon-questions-and-answers-game-vector-8871606.jpg" alt="" />
         <Text fontSize="20px" fontFamily="cursive" color="#b05b1e" fontWeight="60px" mb="2.5">Welcome! To Quiz Mania</Text>
-        <Input 
-        type="text"
-        value={name} 
-        placeholder='Enter your Username' 
-        size="lg" 
-        fontFamily="cursive" 
-        border="2px solid green" 
-        onChange={(e) => setName(e.target.value)}
-        />
-        <br/>
-        <br/>
-        <Input 
-        type="text"
-        value={name} 
-        placeholder='Enter your Username' 
-        size="lg" 
-        fontFamily="cursive" 
-        border="2px solid green" 
-        onChange={(e) => setName(e.target.value)}
-        />
-       
-        <Button 
-        mt="30px" 
-        p="20px" 
-        fontSize="20px"
-        fontFamily="cursive"
-        backgroundColor="#b05b1e"
-        cursor="pointer"
-        border="3px solid #4f758c"
-        mr="30px"
-        onClick={handleClick}
-        >Save</Button>
+        {/* Caling UserLogin component:- */}
+        <UserLogin />
         <Link to="/instruction">
         <Avatar src={play} mt="3.5" border="4px solid #b05b1e" size="lg" />
         </Link>
