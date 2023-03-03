@@ -28,10 +28,10 @@ Chakra UI (UI Styling Library) and AOS animation library.
 
 Steps to run the project locally:-
 
-Clone the code from github
-Run 'npm install' /'npm install -f'
-Run 'npm run dev'
-Enjoy!
+1. Clone the code from github
+2. Run 'npm install' /'npm install -f'
+3. Run 'npm run dev'
+4. Enjoy!
 
 Deployed Link :
 
