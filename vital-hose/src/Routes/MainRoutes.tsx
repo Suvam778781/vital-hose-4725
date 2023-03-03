@@ -9,7 +9,7 @@ const MainRoutes = () => {
     <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/instruction" element={<Instruction />} />
-        <Route path="/video" element={<VideoQuizGame />} />
+        <Route path="/story" element={<VideoQuizGame />} />
     </Routes>
   )
 }
