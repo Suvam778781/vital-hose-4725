@@ -20,6 +20,7 @@ Here are some glimpse of app which we made during sort span of time.....
 <img src=""/>
 
 💫Tech & Tools Used :
+<br/>
 For Frontend :  ReactJS, TypeScript, HTML5, CSS, Javascript, JS6.
 
 For database: Cyclic, Mongo Atlas, Express.js, Node.js, Mongoose.
