@@ -35,8 +35,20 @@ const Home = () => {
         <Image src={img} alt="background" height={["60%","70%","80%","100%"]} w="100%" m="auto"/>
       </Box>
       <Box w='100%' backgroundColor="#afafaf">
-        <Box m="auto" w="50%"  >
+        <Box m="auto"w="50%"  >
+        <Image src="https://media.tenor.com/pryeR-2Jbe0AAAAC/quiz-time-quiz.gif" alt="" />
         <Text fontSize="20px" fontFamily="cursive" color="#b05b1e" fontWeight="60px" mb="2.5">Welcome! To Quiz Mania</Text>
+        <Input 
+        type="text"
+        value={name} 
+        placeholder='Enter your Username' 
+        size="lg" 
+        fontFamily="cursive" 
+        border="2px solid green" 
+        onChange={(e) => setName(e.target.value)}
+        />
+        <br/>
+        <br/>
         <Input 
         type="text"
         value={name} 
