@@ -2,9 +2,9 @@ import { Button } from "@chakra-ui/button";
 import { Checkbox } from "@chakra-ui/checkbox";
 import { Image } from "@chakra-ui/image";
 import { Box, HStack, Text } from "@chakra-ui/layout";
-import React, { useState } from "react";
+import { useToast } from "@chakra-ui/toast";
+import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
-
 interface Question {
   id: number;
   text: string;
@@ -38,24 +38,24 @@ const quizData: Question[] = [
 ];
 
 const VideoQuizGame = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [showScore, setShowScore] = useState(false);
+  const [showScore, setShowScore] = useState (false);
   const [score, setScore] = useState(0);
-  
+  const toast=useToast()
 const HandleSubmitScore=()=>{
   // api integration here
+  console.log(score)
+  toast({
+    title: "Quiz Finished",
+    description:`Your Score Is ${score}`,
+    status: "success",
+    duration: 3000,
+    isClosable: true,
+  });
+  setScore(0)
+ setShowScore(true)
 }
-  const HandleDecrease=()=>{
-    setCurrentIndex((pre=>pre-1))
-  }
-  const HandleIncrease=()=>{
-    setCurrentIndex((pre=>pre+1))
-    if(currentIndex==quizData.length-1){
-      setShowScore(true)
-    }
-  }
   return (
-    <Box w="100%" p="5" backgroundColor={"yellow.100"} shadow="md" borderRadius={"1"}>
+    <Box w="100%" p="5"  shadow="md" borderRadius={"1"}>
       <div style={{ width: "100%", border: "4px solid", borderRadius: "6px" }}>
         <ReactPlayer
           width={"100%"}
@@ -75,59 +75,21 @@ const HandleSubmitScore=()=>{
           >
             You scored {score} out of {quizData.length}
           </Text>
-          <Button mt="20px" _focus={{border:"none"}} backgroundColor="green.500" color={"white"} _hover={{border:"1px"}} onClick={()=>{setCurrentIndex(0),setShowScore(false),setScore(0)}}>Start Again</Button>
+          <Button mt="20px" _focus={{border:"none"}} backgroundColor="green.500" color={"white"} _hover={{border:"1px"}} onClick={()=>{setShowScore(false),setScore(0)}}>Start Again</Button>
           </Box>
         ) : (
-          <div>
-            <div>
-             <div>
-                <Box
-                  w="100%"
-                  justifyContent={"space-between"}
-                  m="auto"
-                  display="flex"
-                  position={"relative"}
-                  mt="60px"
-                >
-                  <Button 
-                    backgroundColor={"green.500"}
-                    p="0"
-                    isDisabled={currentIndex==0}
-                    onClick={HandleDecrease}
-                    transition={"ease-in-out"}
-                    _hover={{ color: "white", border: "1px solid" }}
-                  >
-                    {" "}
-                    <Image
 
-                      w="30px"
-                      transform="scaleX(-1)"
-                      src="https://cdn.iconscout.com/icon/free/png-256/forward-1767505-1502572.png"
-                      alt=""
-                    />{" "}
-                  </Button>
-                  <Button
-                    backgroundColor={"green.500"}
-                    p="0"
-                    onClick={HandleIncrease}
-                    transition={"ease-in-out"}
-                    _hover={{ color: "white", border: "1px solid" }}
-                  >
-                    {" "}
-                    <Image
-                      w="30px"
-                      src="https://cdn.iconscout.com/icon/free/png-256/forward-1767505-1502572.png"
-                      alt=""
-                    />{" "}
-                  </Button>
-                </Box>
-                <span>Question {currentIndex + 1}</span>/{quizData.length}
-              </div>
-              <div>{quizData[currentIndex].text}</div>
-            </div>
-          <SingleQuiz score ={score} setScore={setScore}  currentIndex={currentIndex}/>
-          </div>
-        )}
+          quizData.map((ele,index)=>
+          <Box backgroundColor={"yellow.100"} my="20px">
+            <Box textAlign={"left"} py="10px">
+              <Text color={"white"} fontWeight="500" fontSize={"20px"}>{index+1}-{ele.text}</Text>
+            </Box>
+          <SingleQuiz score ={score} setScore={setScore}  currentIndex={index}/>
+          </Box>
+          )
+        )
+      }
+      <Button onClick={HandleSubmitScore}>Submit Quiz</Button>
       </div>
     </Box>
   );
@@ -139,14 +101,10 @@ const SingleQuiz = (props: any) => {
   const handleAnswerOptionClick = (index: number) => {
     setSelectedValue(index);
     const currentQuestion = quizData[props.currentIndex];
-    if (currentQuestion.answer === currentQuestion.choices[index]) {
+    if (selectedValue === -1 && currentQuestion.answer === currentQuestion.choices[index]) {
       props.setScore((score: number) => score + 1);
     }
-
-
-
   };
-
   return (
     <>
       <div>
@@ -157,12 +115,24 @@ const SingleQuiz = (props: any) => {
             color="green.500"
             onClick={() => handleAnswerOptionClick(index)}
           >
-            <Checkbox
-              value="1"
-              borderRadius="50%"
-              isChecked={selectedValue === index}
-            />
-            <Text>{choice}</Text>
+               <Checkbox
+                value="1"
+                borderRadius="50%"
+                isChecked={selectedValue === index}
+                size="lg"
+              
+                _checked={{
+                  bg: "green.500",
+                  borderColor: "green",
+                  color: "white",
+                  _before: {
+                    display: "block",
+                    borderRadius: "50%",
+                    bg: "white",
+                  },
+                }}
+              />
+            <Text fontWeight={"500"}>{choice}</Text>
           </HStack>
         ))}
       </div>

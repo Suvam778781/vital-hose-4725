@@ -6,6 +6,7 @@ import './App.css'
 import VideoQuizGame from './Components/VideoQuizGame'
 
 import MainRoutes from './Routes/MainRoutes'
+import VideoQuizGame from './Components/VideoQuizGame'
 
 
 function App() {
@@ -17,7 +18,6 @@ function App() {
       <VideoQuizGame/>
 
       <MainRoutes />
-
     </div>
   )
 }
