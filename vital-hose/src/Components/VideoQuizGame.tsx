@@ -1,10 +1,12 @@
 import { Button } from "@chakra-ui/button";
-import { Checkbox } from "@chakra-ui/checkbox";
-import { Image } from "@chakra-ui/image";
 import { Box, HStack, Text } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/toast";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { Radio } from "@chakra-ui/radio";
+import { Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/table";
 interface Question {
   id: number;
   text: string;
@@ -41,8 +43,14 @@ const VideoQuizGame = () => {
   const [showScore, setShowScore] = useState (false);
   const [score, setScore] = useState(0);
   const toast=useToast()
+  useEffect(()=>{
+AOS.init()
+  },[])
 const HandleSubmitScore=()=>{
   // api integration here
+// let payload={...user,score:score}
+  // axios.patch(`https://doubtful-wasp-cowboy-boots.cyclic.app/products/update/${user._id}`,payload)
+  
   console.log(score)
   toast({
     title: "Quiz Finished",
@@ -51,17 +59,18 @@ const HandleSubmitScore=()=>{
     duration: 3000,
     isClosable: true,
   });
-  setScore(0)
  setShowScore(true)
 }
   return (
-    <Box w="100%" p="5"  shadow="md" borderRadius={"1"}>
+    <Box data-aos="fade-up" w="100%" p="5"  shadow="md" borderRadius={"1"}>
+      {showScore===false&&
       <div style={{ width: "100%", border: "4px solid", borderRadius: "6px" }}>
         <ReactPlayer
           width={"100%"}
           url="https://www.youtube.com/watch?v=JaVczFfoPkg"
+          controls
         />
-      </div>
+      </div>}
       <div>
         {showScore ? (
           <Box>
@@ -80,7 +89,7 @@ const HandleSubmitScore=()=>{
         ) : (
 
           quizData.map((ele,index)=>
-          <Box backgroundColor={"yellow.100"} my="20px">
+          <Box  my="20px">
             <Box textAlign={"left"} py="10px">
               <Text color={"white"} fontWeight="500" fontSize={"20px"}>{index+1}-{ele.text}</Text>
             </Box>
@@ -89,15 +98,16 @@ const HandleSubmitScore=()=>{
           )
         )
       }
-      <Button onClick={HandleSubmitScore}>Submit Quiz</Button>
+      {showScore===false&&
+      <Button onClick={HandleSubmitScore}>Submit Quiz</Button>}
       </div>
     </Box>
   );
 };
-
 export default VideoQuizGame;
 const SingleQuiz = (props: any) => {
   const [selectedValue, setSelectedValue] = useState(-1);
+  let obj:any={}
   const handleAnswerOptionClick = (index: number) => {
     setSelectedValue(index);
     const currentQuestion = quizData[props.currentIndex];
@@ -105,37 +115,147 @@ const SingleQuiz = (props: any) => {
       props.setScore((score: number) => score + 1);
     }
   };
+  useEffect(()=>{
+    AOS.init()
+      },[])
   return (
     <>
-      <div>
+      <Box shadow="md" data-aos="zoom-out-up" p="2">
         {quizData[props.currentIndex].choices.map((choice, index) => (
           <HStack
-            key={index}
+          key={index}
+          data-aos="fade-up"
+          data-aos-delay={index * 300}
+          data-aos-offset="50"
+          data-aos-easing="ease-in-out"
             spacing={2}
-            color="green.500"
+            color="green.9  00"
             onClick={() => handleAnswerOptionClick(index)}
           >
-               <Checkbox
+            <Radio
+                border={"3px solid"}
                 value="1"
                 borderRadius="50%"
                 isChecked={selectedValue === index}
                 size="lg"
-              
                 _checked={{
-                  bg: "green.500",
                   borderColor: "green",
                   color: "white",
+                  backgroundColor:"white",
+                  
                   _before: {
                     display: "block",
                     borderRadius: "50%",
                     bg: "white",
                   },
+                  border:"5px solid green"
                 }}
               />
             <Text fontWeight={"500"}>{choice}</Text>
           </HStack>
         ))}
-      </div>
+      </Box>
     </>
   );
 };
+// const HandleLogin=()=>{
+//   try{
+//      let res=axios.post(`url`,userData)
+//      toast({
+//       title: "Login Succesfully",
+//       description:`Your Have Login Succesfully`,
+//       status: "success",
+//       duration: 3000,
+//       isClosable: true,
+//     });
+//     localStorage.setItem("user",userData)
+//   }
+//   catch{
+// Toast({
+//     title: "Login Failed",
+//     description:`Something Went Wrong Please Refresh And Login Again.`,
+//     status: "success",
+//     duration: 3000,
+//     isClosable: true,
+//   });
+//   }
+// }
+
+
+type UserData = {
+  name: string;
+  email: string;
+  score: number;
+  mobile:String
+};
+
+const AllUser:UserData[]=[
+
+{
+  name:"suvam panda",
+  score:2,
+  mobile:"+917008369373",
+  email:"panda@gmail.com"
+},
+{
+  name:"saku panda",
+  score:5,
+  mobile:"+917008369373",
+  email:"suvam@gmail.com"
+},
+{
+  name:"panda",
+  score:8,
+  mobile:"+917008369373",
+  email:"suvampandar@gmail.com"
+}
+
+]
+
+function RankingSection() {
+  const [userData, setUserData] = useState<UserData[]>([]);
+  useEffect(() => {
+      setUserData(AllUser);
+    AOS.init();
+  }, []);
+  const sortedUserData = userData.sort((a, b) => b.score - a.score);
+
+  return (
+    <Box
+      boxShadow="lg"
+      borderRadius="md"
+      p={4}
+      bg="white"
+      _hover={{ boxShadow: "xl" }}
+    >
+      <Table variant="simple">
+        <Thead>
+          <Tr>
+            <Th>Rank</Th>
+            <Th>User Name</Th>
+            <Th>Email</Th>
+            <Th>Score</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          {sortedUserData.map((user, index) => (
+            <Tr
+              key={index}
+              data-aos="fade-up"
+              data-aos-delay={index * 200}
+              data-aos-offset="50"
+              data-aos-easing="ease-in-out"
+            >
+              <Td>{index+1}</Td>
+              <Td>{user.name}</Td>
+              <Td>{user.email}</Td>
+              <Td>{user.score}</Td>
+            </Tr>
+          ))}
+        </Tbody>
+      </Table>
+    </Box>
+  );
+}
+
+export {RankingSection};
