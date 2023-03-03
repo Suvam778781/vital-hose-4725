@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
     Box,
     Text,
@@ -7,11 +7,17 @@ import {
 } from "@chakra-ui/react";
 import "./instruction.css";
 import { Link } from 'react-router-dom';
+import Aos from "aos";
+import "aos/dist/aos.css";
+import story from "../../assets/story.png"
 
 const Instruction = () => {
+  useEffect(()=>{
+    Aos.init({ duration: 2000})
+  },[])
   return (
     <>
-    <Box m="auto" w="80vw" h="auto" backgroundColor="#4c8690" borderRadius="10%" className="body">
+    <Box m="auto" w="80vw" h="auto" backgroundColor="#4c8690" borderRadius="10%" className="body" data-aos="zoom-in">
       <Text fontSize={["20px","20px","20px","30px"]} fontFamily="cursive" color="black" mt="2.5" mb="2.5" backgroundColor="#4c8690" borderRadius="10%">Read Instructions carefully before starting game</Text>
       <hr style={{width:"60%", margin:"auto",color:"black", marginBottom:"30px"}}/>
       <Flex 
@@ -21,15 +27,17 @@ const Instruction = () => {
        fontFamily="popins"
        fontSize={["15px","25px","25px","30px"]}
        >
-        <ul style={{textAlign:"left",marginLeft:"10px",borderRadius:"5%",marginBottom:"100px"}}>
+        <ul style={{textAlign:"left",marginLeft:"10px",borderRadius:"5%",marginBottom:"100px",lineHeight:"1.8"}}>
             <li>First read the question carefully then try to find the right answer</li>
             <li>First see full video available in app and then start for attempting question</li>
-            <li>Each right answer contains 1 marks</li>
-            <li>And for wrong answer there is 0 marks</li>
-            <li>You can select the quiz according to your choice available in app</li>
-            <li>When user started to attempt question then timer start running </li>
-            <li>Timer will be end under certain fixed time</li>
-            <li>Users have to attempt all the question during the limeted period of time</li>
+            <li><img src={story} alt="story" /></li>
+            <li>Each Qusetion contains 4 options in which 1 options is correct.</li>
+            <li>Each right answer contains 1 marks.</li>
+            <li>And for wrong answer there is 0 marks.</li>
+            <li>You can select the quiz according to your choice available in app.</li>
+            <li>When user started to attempt question then timer start running .</li>
+            <li>Timer will be end under certain fixed time..</li>
+            <li>Users have to attempt all the question during the limeted period of time.</li>
             <li>Here are some glipmse of quiz section</li>
             <li>Look for better understanding....</li>
         </ul>
@@ -55,6 +63,7 @@ const Instruction = () => {
           alignItems="center" 
           justifyContent="space-around" 
           flexDirection={["column","column","row","row"]}
+          data-aos="zoom-in"
           >
             <Link to="/environment">
             <Button className="btn" backgroundColor="#4b8590"
