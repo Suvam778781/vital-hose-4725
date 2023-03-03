@@ -17,3 +17,23 @@ About Quiz Mania:- Quiz Mania is a online gaming app where users can solved the 
 Here are some glimpse of app which we made during sort span of time.....
 
 <img src=""/>
+<img src=""/>
+
+💫Tech & Tools Used :
+For Frontend :  ReactJS, TypeScript, HTML5, CSS, Javascript, JS6.
+
+For database: Cyclic, Mongo Atlas, Express.js, Node.js, Mongoose.
+
+Chakra UI (UI Styling Library) and AOS animation library.
+
+Steps to run the project locally:-
+
+Clone the code from github
+Run 'npm install' /'npm install -f'
+Run 'npm run dev'
+Enjoy!
+
+Deployed Link :
+
+
+✨Thank You✨
