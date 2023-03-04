@@ -1,4 +1,4 @@
-# vital-hose-4725
+# Welcome to QUIZMANIA
 
 This is a collaborative Project developed in 48 hours. We are a team of 4 members:
 
@@ -10,32 +10,31 @@ Member 3 = Jagriti Kumari
 
 Member 4 = Bikram Dutta
 
-💻Project Unique Name :- Quiz Mania ✈️
+# 💻Project Unique Name :- Quiz Mania ✈️
 
-About Quiz Mania:- Quiz Mania is a online gaming app where users can solved the quiz question based on their choice. There are six choice given in this app like Environment related quiz, History related quiz, Indian quiz, Student quiz, Kids related quiz and General Knowledge quiz. Users has free choice to choose any one of them and solved question based on the topic. If users give right answer he/she will get 1marks and for wrong answer there is no marks for it. Timer is also available in the quiz. For making this project we used both backend and fronted.
+<h3> Quiz Mania is a online gaming app where users can solved the quiz question based on their choice. There are six choice given in this app like Environment related quiz, History related quiz, Indian quiz, Student quiz, Kids related quiz and General Knowledge quiz. Users has free choice to choose any one of them and solved question based on the topic. If users give right answer he/she will get 1marks and for wrong answer there is no marks for it. Timer is also available in the quiz. For making this project we used both backend and fronted.</h3>
+
+# Deployed URL 👉 [Click here](https://vitalhose.netlify.app/)
 
 Here are some glimpse of app which we made during sort span of time.....
-<img width="100%" src="https://ibb.co/3k2Dp13"/>
-<img width="100%" src="https://ibb.co/Fq2hnGt"/>
-<img width="100%" src="https://ibb.co/hHPHWBZ"/>
-<img width="100%" src="https://ibb.co/GFdbZKc"/>
 
-💫Tech & Tools Used :
-<br/>
-For Frontend :  ReactJS, TypeScript, HTML5, CSS, Javascript, JS6.
+<img src=""/>
+<img src=""/>
 
-For database: Cyclic, Mongo Atlas, Express.js, Node.js, Mongoose.
+# 💫Tech & Tools Used :
 
-Chakra UI (UI Styling Library) and AOS animation library.
+# For Frontend :  ReactJS, TypeScript, HTML5, CSS, Javascript, JS6.
 
-Steps to run the project locally:-
+# For database: Cyclic, Mongo Atlas, Express.js, Node.js, Mongoose.
+
+# Chakra UI (UI Styling Library) and AOS animation library.
+
+# Steps to run the project locally:-
 
 1. Clone the code from github
 2. Run 'npm install' /'npm install -f'
 3. Run 'npm run dev'
 4. Enjoy!
-
-Deployed Link : https://vitalhose.netlify.app
 
 
 ✨Thank You✨
