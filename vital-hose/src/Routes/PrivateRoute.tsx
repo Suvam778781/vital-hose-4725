@@ -3,20 +3,17 @@ import {  Navigate, Outlet } from 'react-router-dom';
 
 
 
-const PrivateRoute = (props:any) => {
+const PrivateRoute = ({children}:any) => {
 
-    return (
-        <Outlet {...props} component={(props:any)=>{
-            const token =localStorage.getItem('userdata');
-            if(token){
-                return <props.component {...props}/>
+let userdata=localStorage.getItem("userdata")
+            if(userdata){
+                return children
             }
             else{
                 return <Navigate to={`/`}/>
             }
-        }}
-        />
-    )
+
+
 }
 
 

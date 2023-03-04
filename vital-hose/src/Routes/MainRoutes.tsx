@@ -10,13 +10,12 @@ const MainRoutes = () => {
     <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/instruction" element={
-        // <PrivateRoute>
+        <PrivateRoute>
         <Instruction />
-        // </PrivateRoute>
+        </PrivateRoute>
         } />
-        <Route path="/:category" element={<VideoQuizGame />} />
+        <Route path="/:category" element={<PrivateRoute> <VideoQuizGame /></PrivateRoute>} />
     </Routes>
   )
 }
-
 export default MainRoutes

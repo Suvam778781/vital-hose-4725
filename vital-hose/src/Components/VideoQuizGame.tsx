@@ -192,10 +192,7 @@ const SingleQuiz = (props: any) => {
     ) {
       props.setScore((score: number) => score + 1);
     }
-  };
-  useEffect(() => {
-    AOS.init();
-  }, []);
+  };  
   return (
     <>
       <Box backgroundColor="#afafaf" shadow="md" data-aos="zoom-out-up" p="2">
@@ -203,8 +200,8 @@ const SingleQuiz = (props: any) => {
           (choice: any, index: number) => (
             <HStack
               key={index}
-              data-aos="fade-right"
-              data-aos-offset="50"
+           
+          
            
               spacing={2}
               color="green.9  00"

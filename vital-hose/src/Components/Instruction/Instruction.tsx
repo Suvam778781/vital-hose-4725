@@ -139,7 +139,7 @@ const Instruction = () => {
             </Box>
             <Box display="grid" gap={4}>
             <Text fontSize="20px" color="red.600"><Avatar src={star} size="sm"mr="10px" />Recommended for Students</Text>
-            <Link to="/student">
+            <Link to="/students">
             <Button className="btn" backgroundColor="#4b8590" size="lg" _hover={{color:"white",backgroundColor:"black"}}>
               <Avatar src={student} size="md" mr="10px" />
               Student Quiz

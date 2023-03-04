@@ -1,15 +1,20 @@
 import { Box, Button, CloseButton, IconButton, VStack,HStack, useColorModeValue, useDisclosure, Flex, Heading, Text, Link, Avatar } from '@chakra-ui/react';
 import React from 'react'
-import {AiOutlineMenu} from "react-icons/ai"
+// import {AiOutlineMenu} from "react-icons/ai"
+import {HamburgerIcon} from "@chakra-ui/icons"
+import { useNavigate } from 'react-router';
 import logo from "../assets/logo.gif"
 
 const Navbar = () => {
     const bg = useColorModeValue("white", "gray.800");
     const mobileNav = useDisclosure();
-
+    const navigate=useNavigate()
     const handleLogout = () =>{
-      localStorage.removeItem('token')
+      localStorage.removeItem('userdata')
+    navigate("/")
     }
+
+
 
     return (
       <>
@@ -70,7 +75,7 @@ const Navbar = () => {
                     color: "inherit",
                   }}
                   variant="ghost"
-                  icon={<AiOutlineMenu />}
+                  icon={<HamburgerIcon />}
                   onClick={mobileNav.onOpen}
                 />
   
