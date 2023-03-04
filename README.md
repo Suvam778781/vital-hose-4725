@@ -34,7 +34,7 @@ Steps to run the project locally:-
 3. Run 'npm run dev'
 4. Enjoy!
 
-Deployed Link :
+Deployed Link : https://vitalhose.netlify.app
 
 
 ✨Thank You✨
