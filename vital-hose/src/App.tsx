@@ -3,13 +3,16 @@ import reactLogo from './assets/react.svg'
 import './App.css'
 
 import MainRoutes from './Routes/MainRoutes'
+import Navbar from "./Components/Navbar"
+
 
 
 function App() {
 
   return (
     <div className="App" >
-      <MainRoutes />
+     <Navbar />
+     <MainRoutes />
     </div>
   )
 }
