@@ -40,9 +40,6 @@ const Home = () => {
           </Text>
         {/* Caling UserLogin component:- */}
         <UserLogin />
-        <Link to="/instruction">
-        <Avatar src={play} mt="3.5" border="4px solid #b05b1e" size="lg" />
-        </Link>
         </Box>
       </Box>
     </Flex>

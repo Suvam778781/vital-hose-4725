@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
+import axios from "axios"
 import { Input,Button,HStack,Stack,FormControl,FormLabel,Spinner,useToast, Box} from "@chakra-ui/react"
 import { Navigate } from 'react-router';
 const firebaseConfig = {
@@ -20,11 +21,19 @@ const [phoneNumber,setPhoneNumber]=useState("+91")
 const [code,setCode]=useState("");
 const [name,setName]=useState("");
 const [email,setEmail]=useState("");
-const [successLogin,setSuccesLogin]=useState(false)
+let dataofuser=localStorage.getItem("userdata")
+const [successLogin,setSuccesLogin]=useState(dataofuser?true:false)
 const toast=useToast();
-const HandleSubmitUser=()=>{
-const payload={email,name,phoneNumber}
-
+type userdata={
+  name:String,
+  phone:String,
+  email:String,
+  score:Number,
+}
+const HandleSubmitUser=async()=>{
+const payload:any={name,phone:phoneNumber,email,score:0}
+try{
+  let userwithid=await axios.post(`https://dead-ruby-bison-ring.cyclic.app/users/register`,payload)
 // here post request will be make 
 toast({
   title: "Login Succesfully!",
@@ -33,6 +42,17 @@ toast({
   isClosable: true,
 });
 setSuccesLogin(true);
+let object=JSON.stringify(userwithid.data)
+localStorage.setItem("userdata",object)
+}catch(err){
+  toast({
+    title: "Something Went Wrong!",
+    status: "error",
+    duration: 3000,
+    isClosable: true,
+  });
+
+}
 }
     const HandleSendCode = () => {
       if(name&&email){

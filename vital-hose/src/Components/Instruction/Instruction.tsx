@@ -88,14 +88,14 @@ const Instruction = () => {
           data-aos="zoom-in"
           >
             
-            <Link to="/environment">
+            <Link to="/geography">
             <Button className="btn" backgroundColor="#4b8590" size="lg"
              _hover={{color:"white",backgroundColor:"black"}}>
               <Avatar src={globe} size="md" mr="10px" />
               Geography Quiz
               </Button>
             </Link>
-            <Link to="/general">
+            <Link to="/gk">
             <Button className="btn" backgroundColor="#4b8590" size="lg" _hover={{color:"white",backgroundColor:"black"}}>
               <Avatar src={genral} size="md" mr="10px"  />
               General Knowledge Quiz
@@ -107,10 +107,16 @@ const Instruction = () => {
               History Quiz
               </Button>
             </Link>
-            <Link to="/story">
+            <Link to="/india">
             <Button className="btn" backgroundColor="#4b8590" size="lg" _hover={{color:"white",backgroundColor:"black"}}>
               <Avatar src={book} size="md" mr="10px" />
-              Country Quiz
+              India Quiz
+              </Button>
+            </Link>
+            <Link to="/sports">
+            <Button className="btn" backgroundColor="#4b8590" size="lg" _hover={{color:"white",backgroundColor:"black"}}>
+              <Avatar src={student} size="md" mr="10px" />
+              Sports Quiz
               </Button>
             </Link>
           </Flex>

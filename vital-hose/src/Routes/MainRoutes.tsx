@@ -14,7 +14,7 @@ const MainRoutes = () => {
         <Instruction />
         // </PrivateRoute>
         } />
-        <Route path="/story" element={<VideoQuizGame />} />
+        <Route path="/:category" element={<VideoQuizGame />} />
     </Routes>
   )
 }

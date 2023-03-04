@@ -7,7 +7,7 @@ const PrivateRoute = (props:any) => {
 
     return (
         <Outlet {...props} component={(props:any)=>{
-            const token = window.localStorage.getItem('token');
+            const token =localStorage.getItem('userdata');
             if(token){
                 return <props.component {...props}/>
             }

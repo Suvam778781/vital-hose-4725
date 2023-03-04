@@ -1,6 +1,7 @@
 #root {
   max-width: 100%;
   margin: 0 auto;
+ 
   padding: 0;
   text-align: center;
 }
@@ -39,4 +40,18 @@
 }
 .body{
   background-color: 'yellow';
-} */
+}
+ */
+ #scrollbar::-webkit-scrollbar {
+  width: 0.2em;
+  background-color: hsl(0, 0%, 96%);
+}
+ 
+#scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgb(147, 217, 147);
+}
+ 
+#scrollbar::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(234, 245, 232, 0.3);
+  background-color: #F5F5F5;
+}
