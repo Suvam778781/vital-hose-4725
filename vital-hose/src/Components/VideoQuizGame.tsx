@@ -7,6 +7,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Radio } from "@chakra-ui/radio";
 import { Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/table";
+import { useBreakpoint } from "@chakra-ui/media-query";
 interface Question {
   id: number;
   text: string;
@@ -62,7 +63,7 @@ const HandleSubmitScore=()=>{
  setShowScore(true)
 }
   return (
-    <Box data-aos="fade-up" w="100%" p="5"  shadow="md" borderRadius={"1"}>
+    <Box backgroundColor="#afafaf" overflow={"hidden"} data-aos="fade-up" w="100%" p="5"  shadow="md" borderRadius={"1"}>
       {showScore===false&&
       <div style={{ width: "100%", border: "4px solid", borderRadius: "6px" }}>
         <ReactPlayer
@@ -73,7 +74,7 @@ const HandleSubmitScore=()=>{
       </div>}
       <div>
         {showScore ? (
-          <Box>
+          <Box >
           <Text
             backgroundColor={"green.500"}
             p="2"
@@ -81,10 +82,13 @@ const HandleSubmitScore=()=>{
             shadow={"md"}
             borderRadius="6px"
             color={"white"}
+            fontSize="20px"
+            fontWeight={"semibold"}
           >
             You scored {score} out of {quizData.length}
           </Text>
-          <Button mt="20px" _focus={{border:"none"}} backgroundColor="green.500" color={"white"} _hover={{border:"1px"}} onClick={()=>{setShowScore(false),setScore(0)}}>Start Again</Button>
+          <Button mt="200px" mb="30px" _focus={{border:"none"}} backgroundColor="green.500" color={"white"} _hover={{border:"1px"}} onClick={()=>{setShowScore(false),setScore(0)}}>Start Again</Button>
+          <RankingSection/>
           </Box>
         ) : (
 
@@ -120,16 +124,17 @@ const SingleQuiz = (props: any) => {
       },[])
   return (
     <>
-      <Box shadow="md" data-aos="zoom-out-up" p="2">
+      <Box backgroundColor="#afafaf" shadow="md" data-aos="zoom-out-up" p="2">
         {quizData[props.currentIndex].choices.map((choice, index) => (
           <HStack
           key={index}
           data-aos="fade-up"
-          data-aos-delay={index * 300}
+          data-aos-delay={index * 200}
           data-aos-offset="50"
           data-aos-easing="ease-in-out"
             spacing={2}
             color="green.9  00"
+            w="20%"
             onClick={() => handleAnswerOptionClick(index)}
           >
             <Radio
@@ -139,16 +144,15 @@ const SingleQuiz = (props: any) => {
                 isChecked={selectedValue === index}
                 size="lg"
                 _checked={{
-                  borderColor: "green",
+                  borderColor: "#b05b1e",
                   color: "white",
                   backgroundColor:"white",
-                  
                   _before: {
                     display: "block",
                     borderRadius: "50%",
                     bg: "white",
                   },
-                  border:"5px solid green"
+                  border:"5px solid #38A169"
                 }}
               />
             <Text fontWeight={"500"}>{choice}</Text>
@@ -214,6 +218,7 @@ const AllUser:UserData[]=[
 
 function RankingSection() {
   const [userData, setUserData] = useState<UserData[]>([]);
+  const breakvalue=useBreakpoint()
   useEffect(() => {
       setUserData(AllUser);
     AOS.init();
@@ -228,13 +233,13 @@ function RankingSection() {
       bg="white"
       _hover={{ boxShadow: "xl" }}
     >
-      <Table variant="simple">
+      <Table overflow={"hidden"} variant="simple">
         <Thead>
           <Tr>
             <Th>Rank</Th>
             <Th>User Name</Th>
             <Th>Email</Th>
-            <Th>Score</Th>
+            <Th  visibility={{base:"hidden",sm:"visible",md:"visible",xl:"visible","2xl":"visible"}}>Score</Th>
           </Tr>
         </Thead>
         <Tbody>
@@ -246,10 +251,10 @@ function RankingSection() {
               data-aos-offset="50"
               data-aos-easing="ease-in-out"
             >
-              <Td>{index+1}</Td>
+              <Td fontSize={"14px"}>{index+1}</Td>
               <Td>{user.name}</Td>
               <Td>{user.email}</Td>
-              <Td>{user.score}</Td>
+              <Td visibility={{base:"hidden",sm:"visible",md:"visible",xl:"visible","2xl":"visible"}}>{user.score}</Td>
             </Tr>
           ))}
         </Tbody>
