@@ -19,15 +19,15 @@ Here are some glimpse of app which we made during sort span of time.....
 <img src=""/>
 <img src=""/>
 
-💫Tech & Tools Used :
+# 💫Tech & Tools Used :
 <br/>
-For Frontend :  ReactJS, TypeScript, HTML5, CSS, Javascript, JS6.
+# For Frontend :  ReactJS, TypeScript, HTML5, CSS, Javascript, JS6.
 
-For database: Cyclic, Mongo Atlas, Express.js, Node.js, Mongoose.
+# For database: Cyclic, Mongo Atlas, Express.js, Node.js, Mongoose.
 
-Chakra UI (UI Styling Library) and AOS animation library.
+# Chakra UI (UI Styling Library) and AOS animation library.
 
-Steps to run the project locally:-
+# Steps to run the project locally:-
 
 1. Clone the code from github
 2. Run 'npm install' /'npm install -f'
