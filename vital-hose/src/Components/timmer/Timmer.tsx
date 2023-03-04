@@ -1,4 +1,5 @@
 import React from 'react';
+import "./timmer.css"
 interface State{
    time:number;
    seconds:number;
