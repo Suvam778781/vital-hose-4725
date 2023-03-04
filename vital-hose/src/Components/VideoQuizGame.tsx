@@ -212,6 +212,32 @@ const AllUser:UserData[]=[
   score:8,
   mobile:"+917008369373",
   email:"suvampandar@gmail.com"
+},
+{
+  name:"panda",
+  score:8,
+  mobile:"+917008369373",
+  email:"suvampandar@gmail.com"
+},{
+  name:"panda",
+  score:8,
+  mobile:"+917008369373",
+  email:"suvampandar@gmail.com"
+},{
+  name:"panda",
+  score:8,
+  mobile:"+917008369373",
+  email:"suvampandar@gmail.com"
+},{
+  name:"panda",
+  score:8,
+  mobile:"+917008369373",
+  email:"suvampandar@gmail.com"
+},{
+  name:"panda",
+  score:8,
+  mobile:"+917008369373",
+  email:"suvampandar@gmail.com"
 }
 
 ]
@@ -226,15 +252,18 @@ function RankingSection() {
   const sortedUserData = userData.sort((a, b) => b.score - a.score);
 
   return (
-    <Box
+    <Box overflowY={"scroll"}
+      id="scrollbar"
+      minHeight="100px"
+      maxHeight={"310px"}
       boxShadow="lg"
       borderRadius="md"
-      p={4}
+      p={0}
       bg="white"
       _hover={{ boxShadow: "xl" }}
     >
-      <Table overflow={"hidden"} variant="simple">
-        <Thead>
+      <Table  variant="simple">
+        <Thead position={"sticky"} justifyContent="space-between" top="0" zIndex={"20"} backgroundColor="green.500">
           <Tr>
             <Th>Rank</Th>
             <Th>User Name</Th>
@@ -242,14 +271,10 @@ function RankingSection() {
             <Th  visibility={{base:"hidden",sm:"visible",md:"visible",xl:"visible","2xl":"visible"}}>Score</Th>
           </Tr>
         </Thead>
-        <Tbody>
+        <Tbody data-aos="fade-up">
           {sortedUserData.map((user, index) => (
             <Tr
               key={index}
-              data-aos="fade-up"
-              data-aos-delay={index * 200}
-              data-aos-offset="50"
-              data-aos-easing="ease-in-out"
             >
               <Td fontSize={"14px"}>{index+1}</Td>
               <Td>{user.name}</Td>
@@ -264,3 +289,35 @@ function RankingSection() {
 }
 
 export {RankingSection};
+
+// const Deal1 = () => {
+//   const [time, setTime] = useState("");
+//   var countDownDate = new Date("Jan 5, 2024 1:37:25").getTime();
+//   // Update the count down every 1 second
+//   var x = setInterval(function () {
+//     // Get today's date and time
+//     var now = new Date().getTime();
+
+//     // Find the distance between now and the count down date
+//     var distance = countDownDate - now;
+
+//     // Time calculations for days, hours, minutes and seconds
+//     var hours = Math.floor(
+//       (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+//     );
+//     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+//     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+//     // Display the result in the element with id="demo"
+
+//     setTime(`${hours}:${minutes}:${seconds}`);
+//     // If the count down is finished, write some text
+//     if (distance < 0) {
+//       clearInterval(x);
+      
+//     }
+//   }, 1000);
+
+//   return <>{time}</>;
+// };
+// export {Deal1};
