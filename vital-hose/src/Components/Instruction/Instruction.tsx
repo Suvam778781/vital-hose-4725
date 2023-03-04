@@ -27,7 +27,7 @@ const Instruction = () => {
   },[])
   return (
     <>
-    <Box m="auto" w="100vw" h="auto" backgroundColor="#e38933" className="body" data-aos="zoom-in">
+    <Box m="auto" w="100vw" h="auto" backgroundColor="#e38933" className="body" data-aos="zoom-in" mt="20px">
       <Text 
       fontSize={["20px","20px","20px","30px"]} 
       fontFamily="cursive" 
